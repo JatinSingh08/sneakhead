@@ -1,0 +1,9 @@
+export { default as Hero } from './Hero/Hero.jsx'
+export { default as Navbar } from './Navbar/Navbar.jsx'
+export { default as Footer } from './Footer/Footer.jsx'
+export { default as Content } from './Content/Content.jsx'
+export { default as List } from './List/List.jsx';
+export { default as Filters } from './Filters/Filters.jsx';
+export { default as SingleProductCard } from './SingleProductCard/SingleProductCard.jsx';
+export { default as Sales } from './Sales.jsx';
+export { default as BillingBox } from './Cart/BillingBox.jsx';
