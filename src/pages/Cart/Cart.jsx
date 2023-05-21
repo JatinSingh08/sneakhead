@@ -30,7 +30,7 @@ const cart = [
 ]
 const Cart = () => {
   return (
-    <div>
+    <div className='h-[100vh]'>
       <h1 className='text-5xl font-bold'>Cart🛒</h1>
       <div className='grid grid-cols-2 items-start justify-items-center'>
         <div>

@@ -1,5 +1,8 @@
 import React from 'react'
 
+const wishlist = [
+  
+]
 const Wishlist = () => {
   return (
     <div>

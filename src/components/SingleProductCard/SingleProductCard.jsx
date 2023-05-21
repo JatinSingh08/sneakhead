@@ -6,12 +6,12 @@ const SingleProductCard = ({shoe}) => {
     <div 
     className='p-4 w-72 m-2 grid gap-2 items-start text-start border transform  cursor-pointer'
     >
-      <div className='h-[20vh]'>
+      <div className=''>
         <img src={img} alt="" 
-        className='w-full object-contain mb-33 drop-shadow-xl transform transition duration-500 hover:scale-110 hover:drop-shadow-2xl'
+        className='w-full h-auto -mt-14 object-contain mb-33 drop-shadow-2xl transform scale-[100px] transition duration-500 hover:scale-110 hover:drop-shadow-2xl'
         />
       </div>
-        <div className='mt-10 grid gap-2'>
+        <div className='-mt-10 grid gap-2'>
           <h1 className='text-xl font-semibold'>{title}</h1>
           <p className='text-[#757575] top-0'>{text}</p>
           <p className='text-[#757575]'>${price}</p>

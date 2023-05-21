@@ -1,13 +1,14 @@
 import React from 'react'
 import { Filters, List } from './../../components'
-import { toprateslaes } from '../../Data/data'
+import { useData } from '../../context'
 
 const ProductList = () => {
+  const { state } = useData();
   return (
     <div className='flex mt-[9vh]'>
         <Filters />
         <List 
-        shoes={toprateslaes}
+        shoes={state.products}
         />
     </div>
   )
