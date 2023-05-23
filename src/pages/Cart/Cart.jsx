@@ -1,50 +1,37 @@
 import React from 'react'
-import { BillingBox, SingleProductCard } from '../../components'
-import product8 from "../../assets/product8.png";
-import product11 from "../../assets/product11.png";
+import { useData } from '../../context'
+import CartProduct from './Components/CartProduct';
+import { BillingBox } from '../../components';
+import { emptyCart } from '../../assets';
 
-
-const cart = [ 
-  {
-    id: "0M0x11",
-    title: "Nike Air Black Max",
-    text: "MEN Running Shoes",
-    rating: "5+",
-    btn: "Buy Now",
-    img: product11,
-    price: "150",
-    color: "from-slate-900 to-black",
-    shadow: "shadow-lg shadow-black",
-  },
-  {
-    id: "0M0x12",
-    title: "Nike Zoom Max",
-    text: "MEN Running Shoes",
-    rating: "5+",
-    btn: "Buy Now",
-    img: product8,
-    price: "150",
-    color: "from-blue-900 to-blue-500",
-    shadow: "shadow-lg shadow-blue-500",
-  },
-]
 const Cart = () => {
+  const { state } = useData();
+
   return (
-    <div>
-      <h1 className='text-5xl font-bold'>Cart🛒</h1>
-      <div className='grid grid-cols-2 items-start justify-items-center'>
-        <div>
-          {
-            cart.map((cartItem, i) => (
-              <SingleProductCard 
-              shoe={cartItem}
-              key={i}
-              />
-            ))
-          }
-        </div>
+    <div className='min-h-screen flex flex-col'>
+      <div className='h-full grid grid-cols-2 lg:grid-cols-1 items-start mt-[15vh] justify-items-center'>
+        {
+          state.cart.length > 0 && (
+            <div className=''>
+            {
+              state?.cart?.map((cartItem, i) => (
+                <CartProduct 
+                shoe={cartItem}
+                key={i}
+                />
+              ))
+            }
+          </div>
+          ) 
+          
+        }
         <BillingBox />
+       
       </div>
+      {/* <div className=''>
+        <img src={emptyCart} alt="" className='w-96 flex items-center justify-center'/>
+      </div> */}
+
     </div>
   )
 }

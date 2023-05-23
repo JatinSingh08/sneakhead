@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = ({footerData}) => {
   const { titles, links } = footerData
   return (
-    <footer className='bg-theme pt-7 pb-5 bottom-0'>
+    <footer className='bg-theme pt-7 pb-5 bottom-0 left-0 right-0'>
       <div className='nike-container text-slate-200'>
         <div className='grid items-start text-start grid-cols-3 max-w-2xl w-full m-auto md:max-w-none md:gap-5'>
           {

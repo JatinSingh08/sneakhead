@@ -1,8 +1,10 @@
 import React from 'react'
 import Title from './utils/Title'
 import Item from './utils/Item'
+import { useData } from '../context'
 
-const Sales = ({popular, sales: {title, items}}) => {
+const Sales = ({popular, items, title}) => {
+  // const { trendingShoesHome, popularShoesHome } = useData();
   return (
     <div className='nike-container'>
       <Title title={title}/>
@@ -10,7 +12,7 @@ const Sales = ({popular, sales: {title, items}}) => {
         {
           items.map((item, i) => (
             <Item 
-            {...item}
+            shoe={item}
             key={i}
             popular={popular}
             />

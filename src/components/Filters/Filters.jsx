@@ -2,7 +2,7 @@ import React from 'react'
 
 const Filters = () => {
   return (
-    <div className='p-10 h-[100vh] w-96 sticky left-0 top-0 gap-6 flex flex-col border-r-2 overflow-y-scroll scrollbar-theme'>
+    <div className='sticky p-10 h-[100vh] w-96 left-0 top-0 gap-6 flex flex-col border-r-2 overflow-y-scroll scrollbar-theme'>
      
       {/* Price slider */}
       <div className='flex flex-col items-start '>
