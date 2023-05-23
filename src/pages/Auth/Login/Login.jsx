@@ -27,7 +27,6 @@ const Login = () => {
     console.log('user not logged in')
   }
 
-  console.log(location);
   useEffect(() => {
     
     if(token) {

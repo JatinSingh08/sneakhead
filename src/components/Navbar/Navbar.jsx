@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { HeartIcon, ShoppingBagIcon } from '@heroicons/react/24/outline'
 import { Link, NavLink } from 'react-router-dom';
 import sneaheadlogo from '../../assets/sneakheadlogo.svg'
-import { useAuth } from '../../context';
+import { useAuth, useData } from '../../context';
 
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);
   const { logoutUser, token } = useAuth();
+  const { state } = useData();
   const handleNavbar = () => {
     if(window.scrollY > 30) {
       setScroll(true);
@@ -64,11 +65,14 @@ const Navbar = () => {
             </Link>
           </li>
 
-          <li className='grid items-center'>
+          <li className='grid items-center relative'>
             <Link to='/wishlist'>
-              <HeartIcon className={`icon-style text-slate-900 ${scroll && "text-slate-900 transition-all duration-300"} `}>
-                <NavLink to='/wishlist' />
-              </HeartIcon> 
+              <button className='relative'>
+                <HeartIcon className={`icon-style w-6 text-slate-900 ${scroll && "text-slate-900 transition-all duration-300"} `} />
+              </button>
+              <div
+              className={`absolute top-4 right-0 bg-slate-300 text-slate-900 flex items-center justify-center rounded-full shadow shadow-slate-100 font-medium cursor-pointer w-4 h-4`}
+              >{state?.wishlist?.length}</div>
             </Link>
           </li>
           <li className='grid items-center relative'>
@@ -76,9 +80,10 @@ const Navbar = () => {
               <button className='relative'>
                 <ShoppingBagIcon className={`icon-style text-slate-900 ${scroll && "text-slate-900 transition-all duration-300"} `}/>
               </button>
+
             <div
             className={`absolute top-4 right-0 bg-slate-300 text-slate-900 flex items-center justify-center rounded-full shadow shadow-slate-100 font-medium cursor-pointer w-4 h-4`}
-            >0</div>
+            >{state?.cart?.length}</div>
             </Link>
           </li>
         </ul>

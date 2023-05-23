@@ -25,3 +25,7 @@ export { default as product24 } from './product24.png'
 export { default as product25 } from './product25.png'
 export { default as product26 } from './product26.png'
 export { default as product27 } from './product27.png'
+export { default as psale1 } from "./nike-air-red.png";
+export { default as psale2 } from "./nike-adapt-bb.png";
+export { default as psale3 } from "./nike-adapt-bb-smart.png";
+export { default as emptyCart } from './emptyCart.svg'
