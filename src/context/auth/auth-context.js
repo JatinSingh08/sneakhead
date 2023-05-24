@@ -48,6 +48,7 @@ const AuthProvider = ({children}) => {
         email,
         password
       });
+      
       if(status === 201) {
         localStorage.setItem(
           'login',

@@ -1,34 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StarIcon, ShoppingBagIcon, HeartIcon } from "@heroicons/react/24/solid";
 import { deleteWishlistItem, postCartItem, postWishlistItem } from '../../services/services';
 import { useAuth, useData } from '../../context';
 import { ActionType } from '../../reducers/constants';
+import { useNavigate } from 'react-router-dom';
 
 const Item = ({popular, shoe }) => {
+  const [cartBtnDisabled, setCartBtnDisabled] = useState(false);
+  const [wishlistBtnDisabled, setWishlistBtnDisabled] = useState(false);
   const {id, title, text, rating, btn, img, price, color, shadow } = shoe;
   const { token } = useAuth();
   const { state ,dispatch } = useData();
+  const navigate = useNavigate();
 
-  // const isPresentInCart = state.cart.find(({id: shoeId}) => shoeId.toString() === id.toString());
+  const isPresentInCart = state.cart.find(({id: shoeId}) => shoeId.toString() === id.toString());
   const isPresentInWishlist = state.wishlist.find(({id: shoeId}) => shoeId.toString() === id.toString());
 
   const cartHandler = async () => {
+    setCartBtnDisabled(true);
     try {
         const { status, data: {cart} } = await postCartItem({
           product: { ...shoe, qty: 1 },
           encodedToken: token
         })
+        setCartBtnDisabled(false);
         if(status === 200 || status === 201) {
           dispatch({ type: ActionType.ADD_TO_CART, payload: cart})
         }
     } catch (error) {
       console.log(error.message);
+    } finally {
+      setCartBtnDisabled(false);
     }
   }
 
 
   const wishlistHandler = async () => {
-    // setWishlistBtnDisabled(true);
+    setWishlistBtnDisabled(true);
     try {
       if(!isPresentInWishlist) {
         const { status, data: {wishlist} } = await postWishlistItem({
@@ -42,13 +50,14 @@ const Item = ({popular, shoe }) => {
     } catch (error) {
      console.log(error.message); 
     } finally {
-      // setWishlistBtnDisabled(false);
+      setWishlistBtnDisabled(false);
     }
   }
 
 
   
   const removeWishlistHandler = async () => {
+    setWishlistBtnDisabled(true);
     try {
       const { status, data: {wishlist}} = await deleteWishlistItem({id, encodedToken: token});
       if(status === 200 || status === 201) {
@@ -56,6 +65,8 @@ const Item = ({popular, shoe }) => {
       }
     } catch (error) {
       console.log(error.message);
+    } finally {
+      setWishlistBtnDisabled(false);
     }
   }
 
@@ -79,16 +90,18 @@ const Item = ({popular, shoe }) => {
 
       <div className='flex items-center gap-3'>
         <button 
+        disabled={wishlistBtnDisabled}
         onClick={() => isPresentInWishlist ? removeWishlistHandler() : wishlistHandler()}
-        className='bg-white/90 button-theme blur-effect p-1 h-8 shadow-sky-200 rounded-m '>
+        className='bg-white/90 button-theme blur-effect p-1 h-8 shadow-sky-200 rounded-m disabled:cursor-not-allowed'>
           
           <HeartIcon className='icon-style text-slate-900' fill={`${isPresentInWishlist ? 'red' : 'gray'}`}/>
         </button>
 
         <button 
-        onClick={() => cartHandler()}
-        className='bg-white/90 button-theme blur-effect px-2 h-8 shadow-sky-200 text-sm text-black font-semibold'>
-          {btn}
+        onClick={() => isPresentInCart ? navigate("/cart") : cartHandler()}
+        disabled={cartBtnDisabled}
+        className='bg-white/90 button-theme blur-effect px-2 h-8 shadow-sky-200 text-sm text-black font-semibold disabled:cursor-not-allowed'>
+          { isPresentInCart ? 'Go to Cart' : 'Buy Now' }
         </button>
       </div>
 

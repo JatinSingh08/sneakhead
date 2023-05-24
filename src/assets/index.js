@@ -28,4 +28,4 @@ export { default as product27 } from './product27.png'
 export { default as psale1 } from "./nike-air-red.png";
 export { default as psale2 } from "./nike-adapt-bb.png";
 export { default as psale3 } from "./nike-adapt-bb-smart.png";
-export { default as emptyCart } from './emptyCart.svg'
+export { default as emptyCartGif } from './emptyCartGif.gif';
