@@ -1,12 +1,15 @@
 import React from 'react'
 import { useData } from '../../context'
 import { billAmountHandler } from '../../utils/utlis';
+import { Link } from 'react-router-dom';
 
 const BillingBox = () => {
   const { state: { cart } } = useData();
   const billAmount = billAmountHandler(cart);
   const grandTotal = billAmount + 50 - 499;
   const amountSaved = billAmount - grandTotal;
+
+
   // const bill = {
   //   totalAmount: billAmount, 
   //   deliveryCharge: 50,
@@ -56,7 +59,9 @@ const BillingBox = () => {
       </div>
 
       <p className='text-start'>You will save ₹ {bill.amountSaved} on this order</p>
-      <button className='button-theme bg-slate-900 text-slate-100 py-1.5 shadow-slate-900 w-full'>Checkout</button>
+      <Link to='/checkout'>
+        <button className='button-theme bg-slate-900 text-slate-100 py-1.5 shadow-slate-900 w-full'>Checkout</button>
+      </Link>
     </div>
   )
 }
