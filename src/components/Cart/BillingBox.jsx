@@ -11,12 +11,13 @@ const BillingBox = () => {
 
 
   // const bill = {
-  //   totalAmount: billAmount, 
+  //   totalAmount: billAmount || 0, 
   //   deliveryCharge: 50,
   //   discount: 499,
   //   grandTotal: this.totalAmount + this.deliveryCharge - this.discount,
   //   amountSaved: this.totalAmount - this.grandTotal
   // };
+
   const bill = {
     totalAmount: billAmount,
     deliveryCharge: 50,

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../../context'
+import { toastNotification } from '../../../utils/utlis';
 
 
 const Login = () => {
@@ -19,12 +20,7 @@ const Login = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     loginUser(userDetails.email, userDetails.password);
-  }
-
-  if(token) {
-    console.log('logged in ');
-  } else {
-    console.log('user not logged in')
+    toastNotification('success', 'Successfully Logged In');
   }
 
   useEffect(() => {

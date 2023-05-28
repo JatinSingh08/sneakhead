@@ -1,10 +1,8 @@
 import React from 'react'
 import Title from './utils/Title'
 import Item from './utils/Item'
-import { useData } from '../context'
 
 const Sales = ({popular, items, title}) => {
-  // const { trendingShoesHome, popularShoesHome } = useData();
   return (
     <div className='nike-container'>
       <Title title={title}/>

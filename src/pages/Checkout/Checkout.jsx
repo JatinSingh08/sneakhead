@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useData } from "../../context";
 import { BillingBox } from "../../components";
-import { emptyCartGif } from "../../assets";
 import Address from "./Components/Address.jsx";
 import AddressModal from "./Components/AddressModal";
 
 const Checkout = () => {
   const { state } = useData();
   const [isOpen, setIsOpen] = useState(false);
-
+  
 
   return (
     <>

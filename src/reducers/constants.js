@@ -5,11 +5,20 @@ export const ActionType = {
   ADD_TO_WISHLIST: "ADD_TO_WISHLIST",
   REMOVE_FROM_CART: "REMOVE_FROM_CART",
   REMOVE_FROM_WISHLIST: "REMOVE_FROM_WISHLIST",
-  FILTER_CHANGE: "FILTER",
+  CHANGE_FILTER: "CHANGE_FILTER",
   SEARCH_FILTER: "SEARCH_FILTER",
   CLEAR_FILTER: "CLEAR_FILTER",
   ADD_ADDRESS: "ADD_ADDRESS",
   DELETE_ADDRESS: "DELETE_ADDRESS",
   INCREASE_CART_QUANTITY: "INCREASE_CART_QUANTITY",
   DECREASE_CART_QUANTITY: "DECREASE_CART_QUANTITY",
+}
+
+export const FilterTypes = {
+  PriceRange: 'PriceRange',
+  SearchValue: 'searchValue',
+  Categories: 'categories',
+  SortBy: 'sortBy',
+  Rating: 'rating',
+  Brands: 'brands'
 }

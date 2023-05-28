@@ -6,3 +6,4 @@ export { default as Login } from './Auth/Login/Login.jsx';
 export { default as Signup } from './Auth/Signup/Signup.jsx';
 export { default as Wishlist } from './Wishlist/Wishlist.jsx';
 export { default as Profile } from './Profile/Profile.jsx';
+export { default as SingleProduct } from './SingleProduct/SingleProduct.jsx';

@@ -4,27 +4,24 @@ const initialState = {
   products: [], 
   cart: [],
   wishlist: [],
+  filters: {
+    brands: [],
+    categories: [],
+    rating: '',
+    sortBy: '',
+    searchValue: '',
+    priceRange: 10000
+  },
   addressList: [
     {
+      name: 'Vicki McDermott',
+      mobile: 1293452481,
+      pincode: '820598',
+      city: 'West Cooper',
       residence: '8505 Christina Ridges',
       alternatemobile: 4878794411,
-      city: 'West Cooper',
-      id: '2364c34d-7645-49cb-8b74-4bc5cb09711d',
-      mobile: 1293452481,
-      name: 'Vicki McDermott',
-      pincode: '820598',
-      state: 'Arunachal Pradesh'
-    },
-    {
-      residence: '8505 Christina Ridges',
-      alternatemobile: 4878794411,
-      city: 'West Cooper',
-      id: '2364c34d-7645-49cb-8b74-4bc5cb09711d',
-      mobile: 1293452481,
-      name: 'Vicki McDermott',
-      pincode: '820598',
-      state: 'Arunachal Pradesh'
-    },
+      state: 'Arunachal Pradesh',
+    }
   ]
 }
 
@@ -49,9 +46,21 @@ const DataReducer = (state, action) => {
         wishlist: action.payload
       }
 
+     case ActionType.ADD_ADDRESS:
+      return {
+        ...state,
+        addressList: [...state.addressList, action.payload]
+      }
+      case ActionType.CHANGE_FILTER: 
+        return {
+          ...state,
+          filters: {
+            ...state.filters,
+            [action.payload.filterType]: action.payload.filterValue
+          }
+        }
     default:
       break;
   }
 }
-
 export { initialState, DataReducer };

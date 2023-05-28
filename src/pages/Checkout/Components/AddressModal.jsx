@@ -1,11 +1,23 @@
 import React, { useState } from "react";
+import { useData } from "../../../context/data/data-context";
+import { states } from "./states";
+import { ActionType } from "../../../reducers/constants";
 
-const AddressModal = ({ isOpen, setIsOpen}) => {
-  const [address, setAddress] = useState("");
+const AddressModal = ({ isOpen, setIsOpen }) => {
+  const {
+    dispatch
+  } = useData();
+  const [address, setAddress] = useState({
+      name: '',
+      mobile: null,
+      pincode: '',
+      city: '',
+      residence: '',
+      alternatemobile: null,
+      state: '',
+  });
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
+
 
   const closeModal = () => {
     setIsOpen(false);
@@ -13,8 +25,7 @@ const AddressModal = ({ isOpen, setIsOpen}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform address submission logic here
-    console.log("Address submitted:", address);
+    dispatch({ type: ActionType.ADD_ADDRESS, payload: address});
     setAddress("");
     closeModal();
   };
@@ -23,20 +34,107 @@ const AddressModal = ({ isOpen, setIsOpen}) => {
     <div className="fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full bg-gray-600 bg-opacity-75">
       {isOpen && (
         <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-50">
-          <div className="bg-white w-96 p-6 rounded-lg shadow-lg">
+          <div className="bg-white w-[40vw] p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold mb-4">Enter Your Address</h2>
             <form onSubmit={handleSubmit}>
+              <div className="grid grid-cols-2 gap-2">
+                <label htmlFor="address" className="block mb-2">
+                  Name:
+                  <input
+                    id="address"
+                    type="text"
+                    value={address.name}
+                    placeholder="Enter your Name"
+                    onChange={(e) => setAddress({...address, name: e.target.value})}
+                    className="border border-gray-300 rounded-lg p-2 mb-4 w-full"
+                    required
+                  />
+                </label>
+
+                <label htmlFor="address" className="block mb-2">
+                  Mobile No.:
+                  <input
+                    id="address"
+                    type="number"
+                    value={address.mobile}
+                    placeholder="Mobile no."
+                    onChange={(e) => setAddress({...address, mobile: e.target.value})}
+                    className="border border-gray-300 rounded-lg p-2 mb-4 w-full"
+                    required
+                  />
+                </label>
+
+                <label htmlFor="address" className="block mb-2">
+                  Pincode:
+                  <input
+                    id="address"
+                    type="number"
+                    placeholder="Pincode"
+                    value={address.pincode}
+                    onChange={(e) => setAddress({...address, pincode: e.target.value})}
+                    className="border border-gray-300 rounded-lg p-2 mb-4 w-full"
+                    required
+                  />
+                </label>
+
+                <label htmlFor="address" className="block mb-2">
+                  City:
+                  <input
+                    id="address"
+                    type="text"
+                    placeholder="City"
+                    value={address.city}
+                    onChange={(e) => setAddress({...address, city: e.target.value})}
+                    className="border border-gray-300 rounded-lg p-2 mb-4 w-full"
+                    required
+                  />
+                </label>
+              </div>
               <label htmlFor="address" className="block mb-2">
                 Address:
+                <input
+                  id="address"
+                  type="text"
+                  placeholder="Address"
+                  value={address.residence}
+                  onChange={(e) => setAddress({...address, residence: e.target.value})}
+                  className="border border-gray-300 rounded-lg p-5 w-full"
+                  required
+                />
               </label>
-              <input
-                id="address"
-                type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                className="border border-gray-300 rounded-lg p-2 mb-4 w-full"
-                required
-              />
+              <div className="grid grid-cols-2 gap-2">
+                <label htmlFor="address" className="block mb-2">
+                  Alternate Ph:
+                  <input
+                    id="address"
+                    type="text"
+                    placeholder="Alternate Ph."
+                    value={address.alternatemobile}
+                    onChange={(e) => setAddress({...address, alternatemobile: e.target.value})}
+                    className="border border-gray-300 rounded-lg p-2 w-full"
+                  />
+                </label>
+
+                <select
+                  name=""
+                  id=""
+                  required
+                  className="border border-gray-300 rounded-lg p-2 w-full block mb-2 mt-6"
+                  onChange={(e) => setAddress({...address, state: e.target.value})}
+                >
+                  <option
+                    disabled
+                    selected
+                    required
+                    // className="border border-gray-300 rounded-lg p-2 w-full"
+                  >
+                    Choose State
+                  </option>
+                  {states.map((state, index) => (
+                    <option value={state}>{state}</option>
+                  ))}
+                </select>
+              </div>
 
               <div className="flex justify-end">
                 <button
