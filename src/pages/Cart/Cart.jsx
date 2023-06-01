@@ -31,7 +31,7 @@ const Cart = () => {
       {
         state?.cart?.length > 0 ? (
           
-          <div className='h-full grid grid-cols-2 lg:grid-cols-1 items-start mt-[15vh] justify-items-center'>
+          <div className='h-full grid grid-cols-2 xl:grid-cols-1 items-start mt-[15vh] justify-items-center'>
           {
             state.cart.length > 0 && (
               

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './profile.css'
-import { Address, Information, OrderHistory } from '../../components';
+import { Address, Information } from '../../components';
 const items = [
   {
     title: 'Profile Information',
@@ -9,10 +9,6 @@ const items = [
   {
     title: 'Address',
     content: <Address />
-  },
-  {
-    title: 'Order History',
-    content: <OrderHistory />
   }
 ]
  const Profile = () => {
@@ -24,26 +20,8 @@ const items = [
  
   useEffect(() => {
     setIsLoading(false);
-    // setContent("");
     
     const controller = new AbortController();
-    // const signal = controller.signal;
-
-    // const fetchData = async () => {
-
-    //   setTimeout(async () => {
-
-    //     const response = await fetch(
-    //       `https://jsonplaceholder.typicode.com/posts/${activeTab + 1}`
-    //     , {signal});
-    //     const data = await response.json();
-    //     setIsLoading(false);
-    //     setContent(data.body);
-
-    //   }, 1000);
-
-    // };
-    // fetchData();
 
     return () => {
       controller.abort(); // cleanup 
@@ -52,8 +30,8 @@ const items = [
   }, [activeTab]);
 
   return (
-    <section className='h-[100vh] grid items-center justify-center'>
-      <div className="tabs__container ">
+    <section className='min-h-screen grid items-center justify-center'>
+      <div className="border border-black w-[60vw] h-[60vh] px-[5px] py-[15px] overflow-y-scroll md:w-[90vw]">
         <div className='tabs__button'>
           {
             items.map((item, idx) => {

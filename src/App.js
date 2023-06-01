@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import {
   Home,
   Cart,
@@ -10,6 +10,7 @@ import {
   Profile,
   Wishlist,
   SingleProduct,
+  ErrorPage,
 } from "./pages";
 import { Navbar, Footer } from "./components";
 import { footerAPI } from "./Data/data";
@@ -69,6 +70,9 @@ function App() {
           <Route path='/productlist/:id' element={<SingleProduct />} />
           <Route path="/login" element={<Login />} />{" "}
           <Route path="/signup" element={<Signup />} />{" "}
+          <Route path="*" element={<Navigate to='/404' />}/>
+          <Route path="/404" element={<ErrorPage />}/>
+          
         </Routes>{" "}
         <Footer footerData={footerAPI} /> <ToastContainer />
       </div>{" "}

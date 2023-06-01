@@ -21,6 +21,7 @@ const Signup = () => {
       userDetails.email,
       userDetails.password
     );
+    navigate('/');
   };
 
   if (token) {
@@ -34,7 +35,7 @@ const Signup = () => {
   }, [token]);
 
   return (
-    <form className="h-full mb-20" onSubmit={submitHandler}>
+    <form className="h-full mb-20 md:mx-2">
       <div className="w-96  m-auto mt-24 h-auto p-4 border rounded-md drop-shadow-sm flex flex-col gap-3">
         <p className="font-semibold text-2xl mb-4">Signup</p>
 
@@ -101,6 +102,7 @@ const Signup = () => {
         <button
           type="submit"
           className="button-theme bg-slate-900 shadow-md text-slate-200"
+          onClick={submitHandler}
         >
           Create new account
         </button>

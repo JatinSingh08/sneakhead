@@ -66,15 +66,15 @@ export const deleteCartItem = async ({id, encodedToken}) =>
     }
 })
 
-export const deleteWishlistItem = async ({id, encodedToken}) => 
-  await axios.delete(`/api/user/wishlist/${id}`, {
+export const deleteWishlistItem = async ({_id, encodedToken}) => 
+  await axios.delete(`/api/user/wishlist/${_id}`, {
     headers: {
       authorization: encodedToken
     }
 })
 
-export const cartItemQuantity = async ({id, encodedToken, type}) => 
-  await axios.post(`/api/user/cart/${id}`,
+export const cartItemQuantity = async ({_id, encodedToken, type}) => 
+  await axios.post(`/api/user/cart/${_id}`,
   {
     action: {type}
   },

@@ -79,7 +79,7 @@ const DataProvider = ({ children }) => {
     })
   }
   let filteredProducts = filtersHandler(state);
-  console.log(state.filters);
+  console.log("addressList", state.addressList);
   return (
     <DataContext.Provider
       value={{

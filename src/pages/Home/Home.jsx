@@ -1,5 +1,5 @@
 import React from 'react'
-import { Hero, Content, Sales } from '../../components'
+import { Hero, Content, Sales, Brands } from '../../components'
 import {popularsales, toprateslaes, highlight, sneaker } from './../../Data/data.js'
 import { useData } from '../../context'
 
@@ -8,8 +8,9 @@ const Home = () => {
   console.log({trendingShoesHome});
   console.log({popularShoesHome});
   return (
-    <div>
+    <div className='flex flex-col gap-5'>
       <Hero />
+      <Brands />
       <Sales 
       items={popularShoesHome}
       title={"Popular Shoes"}

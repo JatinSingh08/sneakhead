@@ -9,6 +9,7 @@ export { default as Sales } from './Sales.jsx';
 export { default as BillingBox } from './Cart/BillingBox.jsx';
 export { default as Information } from './Profile/Information/Information.jsx';
 export { default as Address } from './Profile/Address/Address.jsx';
-export { default as OrderHistory } from './Profile/OrderHistory/OrderHistory.jsx';
 export { default as Loader } from './Loaders/Loader.jsx';
 export { default as Sizes } from './Sizes/Sizes.jsx';
+export { default as Brands } from './Brands/Brands.jsx';
+export { default as Pagination } from './Pagination/Pagination.jsx';

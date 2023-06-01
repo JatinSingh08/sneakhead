@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { useData } from "../../../context/data/data-context";
 import { states } from "./states";
 import { ActionType } from "../../../reducers/constants";
+import { v4 as uuid } from 'uuid';
+
 
 const AddressModal = ({ isOpen, setIsOpen }) => {
   const {
     dispatch
   } = useData();
   const [address, setAddress] = useState({
+      id: uuid(),
       name: '',
       mobile: null,
       pincode: '',
@@ -15,6 +18,7 @@ const AddressModal = ({ isOpen, setIsOpen }) => {
       residence: '',
       alternatemobile: null,
       state: '',
+      isSelected: false
   });
 
 
@@ -34,10 +38,10 @@ const AddressModal = ({ isOpen, setIsOpen }) => {
     <div className="fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full bg-gray-600 bg-opacity-75">
       {isOpen && (
         <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-50">
-          <div className="bg-white w-[40vw] p-6 rounded-lg shadow-lg">
-            <h2 className="text-xl font-semibold mb-4">Enter Your Address</h2>
+          <div className="bg-white w-[40vw] p-6 rounded-lg shadow-lg md:w-[60vw] sm:w-[80vw] ">
+            <h2 className="text-xl font-semibold mb-4 md:mb-2">Enter Your Address</h2>
             <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 md:grid-cols-1 sm:gap-1 gap-2 ">
                 <label htmlFor="address" className="block mb-2">
                   Name:
                   <input
@@ -102,7 +106,7 @@ const AddressModal = ({ isOpen, setIsOpen }) => {
                   required
                 />
               </label>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 md:grid-cols-1 md:gap-1 gap-2">
                 <label htmlFor="address" className="block mb-2">
                   Alternate Ph:
                   <input

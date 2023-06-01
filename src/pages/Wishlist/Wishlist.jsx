@@ -28,12 +28,12 @@ const Wishlist = () => {
   )
 
   return (
-    <div className='min-h-screen flex flex-col mt-[20vh] items-center'>
+    <div className='min-h-screen flex flex-col mt-[20vh] items-center text-start'>
       {
         state.wishlist.length > 0 ? (
-          <>
-      <h1>Wishlist Items💖</h1>
-      <div className=' grid grid-cols-4 items-center justify-items-center'>
+          <div className='text-start'>
+      <h1 className='text-xl font-medium'>>> Wishlist Sneakers</h1>
+      <div className=' grid grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 items-center justify-items-center'>
         {
           state?.wishlist?.map((wishlsitItem, i) => (
             <SingleProductCard 
@@ -44,7 +44,7 @@ const Wishlist = () => {
         }
       </div>
           
-          </>
+          </div>
         ) : (
           <>
             <img src={emptyWishlistGif} alt="" />

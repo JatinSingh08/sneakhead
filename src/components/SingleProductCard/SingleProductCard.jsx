@@ -18,10 +18,10 @@ const SingleProductCard = ({ shoe }) => {
   const navigate = useNavigate();
 
   const isPresentInCart = state.cart.find(
-    ({ id: shoeId }) => shoeId.toString() === _id.toString()
+    ({ _id: shoeId }) => shoeId.toString() === _id.toString()
   );
   const isPresentInWishlist = state.wishlist.find(
-    ({ id: shoeId }) => shoeId.toString() === _id.toString()
+    ({ _id: shoeId }) => shoeId.toString() === _id.toString()
   );
 
   const cartHandler = async () => {

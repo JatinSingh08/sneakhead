@@ -1,9 +1,10 @@
 .tabs__container {
   border: 1px solid black;
-  width: auto;
-  height: 300px;
+  width: 60vw;
+  height: 60vh;
   margin: 0 auto;
   padding: 5px 15px;
+  overflow-y: scroll;
 }
 .tabs__button {
   text-align: left;

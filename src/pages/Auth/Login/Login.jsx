@@ -31,7 +31,7 @@ const Login = () => {
   } ,[token])
 
   return (
-    <form className='h-full mb-20' onSubmit={submitHandler}>
+    <form className='h-full mb-20 md:mx-2' onSubmit={submitHandler}>
       <div className="w-96  m-auto mt-24 h-auto p-4 border rounded-md drop-shadow-sm flex flex-col gap-3">
         <p className="font-semibold text-2xl mb-4">Login</p>
         <div className="flex flex-col gap-1">

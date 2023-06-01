@@ -1,9 +1,21 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { useAuth } from "../context"
+import { useAuth, useData } from "../context"
 
-export const PrivateRoutes = ({ children }) => {
+ const PrivateRoutes = ({ children }) => {
   const { token } = useAuth();
   const location = useLocation();
 
   return token ? children : <Navigate replace to='/login' state={{ from: location }}/>
+}
+
+// const PrivateCheckoutRoute = ({children}) => {
+//   const { state: {cart} } = useData();
+//   // const location = useLocation();
+
+//   return <Navigate replace to='/productlist'  />
+// }
+
+export { 
+  PrivateRoutes,
+  // PrivateCheckoutRoute
 }

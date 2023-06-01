@@ -1,7 +1,7 @@
 import React from "react";
 import { useData } from "../../context/data/data-context";
 
-const Filters = () => {
+const Filters = ({showFilters}) => {
   const { state, applyFilters } = useData();
 
   const brandsCheckBoxHandler = (e) => {
@@ -15,7 +15,7 @@ const Filters = () => {
   };
 
   const categoryCheckboxHandler = (e) => {
-    let categoryArr = state.filters.categories;
+    let categoryArr = state.filters?.categories;
     if (e.target.checked) {
       categoryArr.push(e.target.value);
     } else {
@@ -25,10 +25,17 @@ const Filters = () => {
     }
     applyFilters(e.target.name, categoryArr);
   };
-
   return (
-    <div className="sticky p-10 h-[100vh] w-[380px] left-0 top-0 gap-6 flex flex-col border-r-2 overflow-y-scroll scrollbar-theme">
+    <div 
+    className={`transition-all duration-300 ease-in-out  bottom-0 sticky md:fixed  p-10 h-[100vh] w-[380px] left-0 top-0 gap-6 flex flex-col border-r-2 overflow-y-scroll scrollbar-theme z-20
+  
+
+    ${showFilters ? 'fixed top-0 bottom-0 blur-effect-theme opacity-100 z-20 left-0 w-[260px] mt-[9vh] ' : 'md:-left-[400px]' }
+    `}
+    
+    >
       {/* Price slider */}
+
       <div className="flex flex-col items-start ">
         <h1 className="font-semibold text-[20px] w-full">
           Price Range: ₹ {state.filters.priceRange}
@@ -64,6 +71,7 @@ const Filters = () => {
               className=""
               name="brands"
               value="puma"
+              checked={state.filters.brands.includes('puma')}
               onChange={brandsCheckBoxHandler}
             />
             Puma
@@ -74,6 +82,7 @@ const Filters = () => {
               type="checkbox"
               value="adidas"
               name="brands"
+              checked={state.filters.brands.includes('adidas')}
               onChange={brandsCheckBoxHandler}
             />
             Adidas
@@ -84,6 +93,7 @@ const Filters = () => {
               type="checkbox"
               value="nike"
               name="brands"
+              checked={state.filters.brands.includes('nike')}
               onChange={brandsCheckBoxHandler}
             />
             Nike
@@ -94,6 +104,7 @@ const Filters = () => {
               type="checkbox"
               value="vans"
               name="brands"
+              checked={state.filters.brands.includes('vans')}
               onChange={brandsCheckBoxHandler}
             />
             Vans
@@ -104,6 +115,7 @@ const Filters = () => {
               type="checkbox"
               value="converse"
               name="brands"
+              checked={state.filters.brands.includes('converse')}
               onChange={brandsCheckBoxHandler}
             />
             Converse
@@ -123,6 +135,7 @@ const Filters = () => {
               className=""
               name="rating"
               value="4"
+              checked={state.filters.rating.includes('4')}
               onChange={(e) => applyFilters(e.target.name, e.target.value)}
             />
             4 Star and above
@@ -133,6 +146,7 @@ const Filters = () => {
               type="radio"
               name="rating"
               value="3"
+              checked={state.filters.rating.includes('3')}
               onChange={(e) => applyFilters(e.target.name, e.target.value)}
             />
             3 Star and above
@@ -143,6 +157,7 @@ const Filters = () => {
               type="radio"
               name="rating"
               value="2"
+              checked={state.filters.rating.includes('2')}
               onChange={(e) => applyFilters(e.target.name, e.target.value)}
             />
             2 Star and above
@@ -153,6 +168,7 @@ const Filters = () => {
               type="radio"
               name="rating"
               value="1"
+              checked={state.filters.rating.includes('1')}
               onChange={(e) => applyFilters(e.target.name, e.target.value)}
             />
             1 Star and above
@@ -172,6 +188,7 @@ const Filters = () => {
               className=""
               value="men"
               name="categories"
+              checked={state.filters.categories.includes('men')}
               onChange={categoryCheckboxHandler}
             />
             Men
@@ -182,6 +199,7 @@ const Filters = () => {
               type="checkbox"
               value="women"
               name="categories"
+              checked={state.filters.categories.includes('women')}
               onChange={categoryCheckboxHandler}
             />
             Women
@@ -192,6 +210,7 @@ const Filters = () => {
               type="checkbox"
               value="sports"
               name="categories"
+              checked={state.filters.categories.includes('sports')}
               onChange={categoryCheckboxHandler}
             />
             Sports
@@ -202,6 +221,7 @@ const Filters = () => {
               type="checkbox"
               value="trending"
               name="categories"
+              checked={state.filters.categories.includes('trending')}
               onChange={categoryCheckboxHandler}
             />
             Trending
@@ -221,6 +241,7 @@ const Filters = () => {
               className=""
               name="sortBy"
               value="highToLow"
+              checked={state.filters.sortBy.includes('highToLow')}
               onChange={(e) => applyFilters(e.target.name, e.target.value)}
             />
             Price High to Low
@@ -231,6 +252,7 @@ const Filters = () => {
               type="radio"
               name="sortBy"
               value="lowToHigh"
+              checked={state.filters.sortBy.includes('lowToHigh')}
               onChange={(e) => applyFilters(e.target.name, e.target.value)}
             />
             Price Low to High

@@ -1,19 +1,92 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Loader, Sizes } from "../../components";
-import { useData } from "../../context";
+import { useAuth, useData } from "../../context";
+import { toastNotification } from "../../utils/utlis";
+import { postCartItem, postWishlistItem } from "../../services/services";
+import { ActionType } from "../../reducers/constants";
 
 const SingleProduct = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
+  const [cartBtnDisabled, setCartBtnDisabled] = useState(false);
+  const [wishlistBtnDisabled, setWishlistBtnDisabled] = useState(false);
+  const navigate = useNavigate();
   const {
-    state: { products },
+    state: { products, cart, wishlist },
+    dispatch,
   } = useData();
+  const { token } = useAuth();
 
   const shoe = products.find(({ _id }) => _id.toString() === id.toString());
+
   // const { _id, title, text, brand, category, rating,  img, price } = shoe;
+  const isPresentInCart = cart.find(
+    ({ _id: shoeId }) => shoeId.toString() === id.toString()
+  );
+  const isPresentInWishlist = wishlist.find(
+    ({ _id: shoeId }) => shoeId.toString() === id.toString()
+  );
+
+  const cartHandler = async () => {
+    setCartBtnDisabled(true);
+    if (token) {
+      toastNotification("success", "Successfully added to Cart");
+    } else {
+      navigate("/login");
+      toastNotification("warn", "Please login first");
+    }
+
+    try {
+      const {
+        status,
+        data: { cart },
+      } = await postCartItem({
+        product: { ...shoe, qty: 1 },
+        encodedToken: token,
+      });
+      setCartBtnDisabled(false);
+      console.log(cart);
+      if (status === 200 || status === 201) {
+        dispatch({ type: ActionType.ADD_TO_CART, payload: cart });
+      }
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setCartBtnDisabled(false);
+    }
+  };
+
+  const wishlistHandler = async () => {
+    setWishlistBtnDisabled(true);
+    if (token) {
+      toastNotification("success", "Added to Wishlist");
+    } else {
+      navigate("/login");
+      toastNotification("warn", "Please login first");
+    }
+    try {
+      if (!isPresentInWishlist) {
+        const {
+          status,
+          data: { wishlist },
+        } = await postWishlistItem({
+          product: { ...shoe, wished: true },
+          encodedToken: token,
+        });
+        if (status === 200 || status === 201) {
+          dispatch({ type: ActionType.ADD_TO_WISHLIST, payload: wishlist });
+        }
+      }
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setWishlistBtnDisabled(false);
+    }
+  };
+
   useEffect(() => {
     const id = setTimeout(() => {
       setIsLoading(false);
@@ -32,8 +105,8 @@ const SingleProduct = () => {
     );
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="flex items-center justify-center gap-10">
+    <div className="min-h-screen flex items-center justify-center md:mt-[9vh] p-4">
+      <div className="flex items-center justify-center gap-10 md:flex-col">
         <div className=" hover:scale-100">
           <img
             src={shoe?.img}
@@ -46,8 +119,14 @@ const SingleProduct = () => {
           <p className="text-[#757575] top-0">{shoe?.text}</p>
           <p className="text-[#757575]">₹ {shoe?.price}</p>
           <Sizes />
-          <button className="button-theme mt-3 flex items-center justify-center blur-effect bg-slate-800 text-slate-200 w-64 disabled:cursor-not-allowed disabled:bg-slate-500">
-            <span>Add to Cart</span>
+          <button
+            disabled={cartBtnDisabled}
+            className="button-theme mt-3 flex items-center justify-center md:mx-auto blur-effect bg-slate-800 text-slate-200 w-64 disabled:cursor-not-allowed disabled:bg-slate-500"
+            onClick={() =>
+              isPresentInCart ? navigate("/cart") : cartHandler()
+            }
+          >
+            <span> {isPresentInCart ? "Go to Cart" : "Add to Cart"}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

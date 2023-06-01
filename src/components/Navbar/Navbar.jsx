@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HeartIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import sneaheadlogo from "../../assets/sneakheadlogo.svg";
 import { useAuth, useData } from "../../context";
 
@@ -8,6 +8,7 @@ const Navbar = () => {
   const [scroll, setScroll] = useState(false);
   const { token } = useAuth();
   const { state, applyFilters } = useData();
+  const navigate = useNavigate();
   const handleNavbar = () => {
     if (window.scrollY > 30) {
       setScroll(true);
@@ -65,7 +66,11 @@ const Navbar = () => {
               class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  outline-none h-8"
               placeholder="Search"
               name="searchValue"
-              onChange={(e) => applyFilters(e.target.name, e.target.value)}
+              onChange={(e) =>{
+               applyFilters(e.target.name, e.target.value);
+               e.target.value.trim().length > 0 && navigate('/productlist');
+              }
+              }
               required
             />
           </div>

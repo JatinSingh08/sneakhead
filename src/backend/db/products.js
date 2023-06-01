@@ -826,10 +826,10 @@ export const products = [
   },
   {
     _id: "56",
-    title: "Slipstream Lo Canvas Unisex Sneakers",
+    title: "Slipstream Lo Canvas",
     text: "PUMA White-Warm White-Hero Blue",
     brand: "puma",
-    category: ["women", "trending"],
+    category: ["women",'men', "trending"],
     rating: "4+",
     btn: "Buy Now",
     img: product54,
@@ -966,7 +966,7 @@ export const products = [
   },
   {
     _id: "66",
-    title: "SK8-HI COMFYCUSH GROWING EVERYDAY SHOE",
+    title: "SK8-HI COMFYCUSH",
     text: "Vans Unisex Sneakers",
     brand: "vans",
     category: ["women", "men", "sports", "trending"],
