@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { toastNotification } from "../../utils/utlis";
 
-const SingleProductCard = ({ shoe }) => {
+const SingleProductCard = ({ shoe, isWishlist }) => {
   const [cartBtnDisabled, setCartBtnDisabled] = useState(false);
   const [wishlistBtnDisabled, setWishlistBtnDisabled] = useState(false);
   const { _id, title, text, img, price } = shoe;
@@ -104,7 +104,7 @@ const SingleProductCard = ({ shoe }) => {
         <img
           src={img}
           alt=""
-          className=" -mt-12 object-contain mb-33 drop-shadow-2xl transform scale-[150px] transition duration-500 hover:scale-110 hover:drop-shadow-2xl"
+          className={ isWishlist && _id < 16 ? `object-contain mt-5 drop-shadow-2xl transform scale-[150px] transition duration-500 hover:scale-110 hover:drop-shadow-2xl` : `-mt-12 object-contain mb-33 drop-shadow-2xl transform scale-[150px] transition duration-500 hover:scale-110 hover:drop-shadow-2xl`}
         />
       </div>
       <div className="-mt-10 grid gap-2">

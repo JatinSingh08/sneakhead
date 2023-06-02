@@ -80,13 +80,22 @@ const DataReducer = (state, action) => {
     case ActionType.CLEAR_FILTER:
       return {
         ...state,
-        filters: action.payload
+        filters: {
+          brands: [],
+          categories: [],
+          rating: "",
+          sortBy: "",
+          searchValue: "",
+          priceRange: 10000,
+        },
       };
     case ActionType.EDIT_ADDRESS:
       return {
         ...state,
-        addressList: state?.addressList.map((add) => add.id === action.payload.id ? action.payload.address : add)
-      }
+        addressList: state?.addressList.map((add) =>
+          add.id === action.payload.id ? action.payload.address : add
+        ),
+      };
     default:
       break;
   }

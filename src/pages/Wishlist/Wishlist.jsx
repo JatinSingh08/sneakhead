@@ -37,6 +37,7 @@ const Wishlist = () => {
         {
           state?.wishlist?.map((wishlsitItem, i) => (
             <SingleProductCard 
+            isWishlist
             shoe={wishlsitItem}
             key={i}
             />

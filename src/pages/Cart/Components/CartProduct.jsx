@@ -102,7 +102,9 @@ const CartProduct = ({ shoe }) => {
           <img
             src={img}
             alt=""
-            className="w-56 -mt-10 md:-mt-4 md:m-auto cursor-pointer object-contain drop-shadow-2xl transition duration-500 hover:scale-110 hover:drop-shadow-2xl"
+            className={_id >= 16 ? `w-56 -mt-10 md:-mt-4 md:m-auto cursor-pointer object-contain drop-shadow-2xl transition duration-500 hover:scale-110 hover:drop-shadow-2xl`:
+          `w-56 mt-6 h-auto m-auto cursor-pointer object-contain drop-shadow-2xl transition duration-500 hover:scale-110 hover:drop-shadow-2xl `
+          }
           />
         </div>
         <div className="flex flex-col gap-3 ">

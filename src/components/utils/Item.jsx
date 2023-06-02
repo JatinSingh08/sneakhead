@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StarIcon, ShoppingBagIcon, HeartIcon } from "@heroicons/react/24/solid";
+import { StarIcon, HeartIcon } from "@heroicons/react/24/solid";
 import { deleteWishlistItem, postCartItem, postWishlistItem } from '../../services/services';
 import { useAuth, useData } from '../../context';
 import { ActionType } from '../../reducers/constants';
@@ -8,13 +8,13 @@ import { useNavigate } from 'react-router-dom';
 const Item = ({popular, shoe }) => {
   const [cartBtnDisabled, setCartBtnDisabled] = useState(false);
   const [wishlistBtnDisabled, setWishlistBtnDisabled] = useState(false);
-  const {id, title, text, rating, btn, img, price, color, shadow } = shoe;
+  const {_id, title, text, rating, img, price, color, shadow } = shoe;
   const { token } = useAuth();
   const { state ,dispatch } = useData();
   const navigate = useNavigate();
 
-  const isPresentInCart = state.cart.find(({id: shoeId}) => shoeId.toString() === id.toString());
-  const isPresentInWishlist = state.wishlist.find(({id: shoeId}) => shoeId.toString() === id.toString());
+  const isPresentInCart = state.cart.find(({_id: shoeId}) => shoeId.toString() === _id.toString());
+  const isPresentInWishlist = state.wishlist.find(({_id: shoeId}) => shoeId.toString() === _id.toString());
 
   const cartHandler = async () => {
     setCartBtnDisabled(true);
@@ -59,7 +59,7 @@ const Item = ({popular, shoe }) => {
   const removeWishlistHandler = async () => {
     setWishlistBtnDisabled(true);
     try {
-      const { status, data: {wishlist}} = await deleteWishlistItem({id, encodedToken: token});
+      const { status, data: {wishlist}} = await deleteWishlistItem({_id, encodedToken: token});
       if(status === 200 || status === 201) {
         dispatch({ type: ActionType.ADD_TO_WISHLIST, payload: wishlist });
       }
