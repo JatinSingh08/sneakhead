@@ -8,3 +8,4 @@ export { default as Wishlist } from "./Wishlist/Wishlist.jsx";
 export { default as Profile } from "./Profile/Profile.jsx";
 export { default as SingleProduct } from "./SingleProduct/SingleProduct.jsx";
 export { default as ErrorPage } from "./ErrorPage/ErrorPage.jsx";
+export { default as Order } from './Order/Order.jsx';

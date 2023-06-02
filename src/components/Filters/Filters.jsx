@@ -1,8 +1,10 @@
 import React from "react";
 import { useData } from "../../context/data/data-context";
+import { ActionType } from "../../reducers/constants";
+import { initialState } from "../../reducers";
 
 const Filters = ({showFilters}) => {
-  const { state, applyFilters } = useData();
+  const { state, dispatch, applyFilters } = useData();
 
   const brandsCheckBoxHandler = (e) => {
     let brandsArr = state.filters.brands;
@@ -34,6 +36,11 @@ const Filters = ({showFilters}) => {
     `}
     
     >
+      <div>
+        <button className="button-theme bg-slate-200 text-slate-900 "
+        onClick={() => dispatch({ type: ActionType.CLEAR_FILTER, payload: initialState.filters })}
+        >Clear Filters</button>
+      </div>
       {/* Price slider */}
 
       <div className="flex flex-col items-start ">

@@ -7,7 +7,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const localStorageToken = JSON.parse(localStorage.getItem("login"));
   const [token, setToken] = useState(localStorageToken?.token);
-  const localStorageUser = JSON.parse(localStorage.getItem("user"));
+  const localStorageUser = JSON.parse(localStorage.getItem("login"));
   const [user, setUser] = useState(localStorageUser?.user);
 
   const loginUser = async (email, password) => {

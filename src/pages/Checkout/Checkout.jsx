@@ -26,7 +26,7 @@ const Checkout = () => {
   }, []);
 
   useEffect(() => {
-    if (location?.state !== "cart" || !state.cart.length) {
+    if (!state.cart.length) {
       navigate("/productlist");
     }
   }, []);

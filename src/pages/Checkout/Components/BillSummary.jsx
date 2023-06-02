@@ -4,8 +4,9 @@ import { billAmountHandler, toastNotification } from "../../../utils/utlis";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import { logo } from "../../../assets";
+import { sneakheadLogo } from "../../../assets";
 import useRazorpay from "react-razorpay";
+import confetti from "canvas-confetti";
 
 
 
@@ -14,9 +15,7 @@ const BillSummary = ({addressSelected}) => {
   const {
     state: { cart, addressList },
   } = useData();
-  const [paymentDone, setPaymenDone] = useState(false);
-  const [buttonClicked, setButtonClicked] = useState(false);
-  const Razorpay = useRazorpay();
+  const navigate = useNavigate();
   const billAmount = billAmountHandler(cart);
   const grandTotal = billAmount + 50 - 499;
   const amountSaved = billAmount - grandTotal;
@@ -30,56 +29,101 @@ const BillSummary = ({addressSelected}) => {
   };
 
   const isAddressSelected = addressList.find(({isSelected}) => isSelected);
-const handlePayment = async (params) => {
-  // const order = await createOrder(params); //  Create order on your backend
-  setButtonClicked(true);
-  if(!isAddressSelected) {
-    toastNotification('error', 'Select address to continue');
-    return;
-  }
 
-  const options = {
-    key: "rzp_test_5KezFMy0ws3aN9", // Enter the Key ID generated from the Dashboard
-    amount: bill.grandTotal * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    currency: "INR",
-    name: "Sneakhead",
-    description: "Test Transaction",
-    image: {logo},
-    // order_id: "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
-    handler: function (response) {
-      // alert(response.razorpay_payment_id);
-      // alert(response.razorpay_order_id);
-      // alert(response.razorpay_signature);
-    },
-    prefill: {
-      name: "Jatin Singh",
-      email: "youremail@example.com",
-      contact: "9999999999",
-    },
-    notes: {
-      address: "Razorpay Corporate Office",
-    },
-    theme: {
-      color: "#3399cc",
-    },
+  const loadScript = async (url) => {
+    return new Promise((resolve) => {
+      const script = document.createElement('script');
+      script.src = url;
 
+      script.onload = () => {
+        resolve(true);
+      };
+
+      script.onerror = () => {
+        resolve(false);
+      };
+
+      document.body.appendChild(script);
+    });
   };
 
-  const rzp1 = new Razorpay(options);
+  const Popper = () => {
+    var end = Date.now() + 3 * 1000;
+    // go Buckeyes!
+    var colors = ['#392f5a', '#9583cf'];
 
-  // rzp1.on("payment.failed", function (response) {
-  //   alert(response.error.code);
-  //   alert(response.error.description);
-  //   alert(response.error.source);
-  //   alert(response.error.step);
-  //   alert(response.error.reason);
-  //   alert(response.error.metadata.order_id);
-  //   alert(response.error.metadata.payment_id);
-  // });
+    (function frame() {
+      confetti({
+        particleCount: 2,
+        angle: 40,
+        spread: 55,
+        origin: { x: 0 },
+        colors: colors,
+      });
+      confetti({
+        particleCount: 2,
+        angle: 140,
+        spread: 55,
+        origin: { x: 1 },
+        colors: colors,
+      });
 
-  rzp1.open();
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
+  };
 
-};
+  const displayRazorpay = async () => {
+    if (isAddressSelected) {
+      const res = await loadScript(
+        'https://checkout.razorpay.com/v1/checkout.js'
+      );
+
+      if (!res) {
+        toastNotification('error','Razorpay SDK failed to load, check you connection');
+        return;
+      }
+
+      const options = {
+        key: 'rzp_test_5KezFMy0ws3aN9',
+        amount: grandTotal * 100,
+        currency: 'INR',
+        name: 'Sneakhead',
+        description: 'Thank you for shopping with us',
+        image: {sneakheadLogo},
+        handler: function (response) {
+          // const tempObj = {
+          //   products: [...cartData],
+          //   amount: totalPrice,
+          //   paymentId: response.razorpay_payment_id,
+          // };
+          // orderDispatch({ type: 'ADD_ORDERS', payload: tempObj });
+          toastNotification('success', 'Payment succesfull');
+          navigate('/order');
+          Popper();
+          // clearCart(dispatch, cartData, token);
+          // dispatch({
+          //   type: ACTION_TYPE.SETCART_LIST,
+          //   payload: { cartlist: [] },
+          // });
+        },
+        prefill: {
+          name: 'Jatin',
+          email: 'singjatin0812@gmail.com',
+          contact: '9999999999',
+        },
+        theme: {
+          color: '#392F5A',
+        },
+      };
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+    } else {
+      toastNotification('warn', 'Please select or add new adress');
+    }
+  };
+
 
 
   return (
@@ -120,7 +164,7 @@ const handlePayment = async (params) => {
       </p>
       <Link to="/checkout">
         <button className="button-theme bg-slate-900 text-slate-100 py-1.5 shadow-slate-900 w-full"
-        onClick={() => handlePayment()}
+        onClick={() => displayRazorpay()}
         >
           Place Order
         </button>

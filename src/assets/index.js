@@ -77,3 +77,5 @@ export { default as adidasLogo } from './adidasLogo.png';
 export { default as pumaLogo } from './pumaLogo.png';
 export { default as converseLogo } from './converseLogo.png';
 export { default as vansLogo } from './vansLogo.png';
+export { default as orderSuccessGif }  from './orderSuccessGif.gif';
+export { default as sneakheadLogo} from './sneakheadlogo.svg';

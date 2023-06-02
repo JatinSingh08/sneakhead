@@ -3,7 +3,7 @@ import { useAuth } from '../../../context'
 
 const Information = () => {
   const { logoutUser, user } = useAuth();
-
+  console.log(user);
   return (
     <div>
       <h1><span className='underline text-green-400'>Name: </span> {user?.firstName + user?.lastName}</h1>

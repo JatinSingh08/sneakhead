@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useAuth, useData } from "../../../context";
+import { useData } from "../../../context";
 import AddressModal from "../../../pages/Checkout/Components/AddressModal";
 import { ActionType } from "../../../reducers/constants";
+import EditModal from "./EditModal";
 
 const Address = () => {
   const {
@@ -9,14 +10,16 @@ const Address = () => {
     dispatch
   } = useData();
   const [isOpen, setIsOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [addressId, setAddressId] = useState('');
 
   const addressDeleteHandler = (id) => {
     dispatch({ type: ActionType.DELETE_ADDRESS, payload: id})
   }
 
   return (
-    <div>
-      <button className="button-theme bg-slate-900 blur-effect text-slate-200 w-full py-2"
+    <div >
+      <button className="button-theme bg-slate-900 blur-effect text-slate-200 w-full py-1"
       onClick={() => setIsOpen(true)}
       >
         Add New Address
@@ -33,7 +36,12 @@ const Address = () => {
             </p>
             <p>Pincode: {address.pincode}</p>
             <p>Ph: {address.mobile}</p>
-            <button className="bg-green-300 py-0.5 px-5 rounded-lg button-theme">Edit</button>
+            <button className="bg-green-300 py-0.5 px-5 rounded-lg button-theme"
+            onClick={() => {
+              setIsEdit(true);
+              setAddressId(address.id);
+            }}
+            >Edit</button>
             <button className="bg-red-500 py-0.5 px-5 rounded-lg ml-5 button-theme"
             onClick={() => addressDeleteHandler(address.id)}
             >
@@ -51,6 +59,15 @@ const Address = () => {
           <AddressModal 
           isOpen={isOpen}
           setIsOpen={setIsOpen}
+          />
+        )
+      }
+      {
+        isEdit && (
+          <EditModal 
+          isEdit={isEdit}
+          addressId={addressId}
+          setIsEdit={setIsEdit}
           />
         )
       }

@@ -11,6 +11,7 @@ import {
   Wishlist,
   SingleProduct,
   ErrorPage,
+  Order,
 } from "./pages";
 import { Navbar, Footer } from "./components";
 import { footerAPI } from "./Data/data";
@@ -67,12 +68,21 @@ function App() {
               </PrivateRoutes>
             }
           />{" "}
+          <Route
+            path="/order"
+            element={
+              <PrivateRoutes>
+                <Order />
+              </PrivateRoutes>
+            }
+          />{" "}
+
           <Route path='/productlist/:id' element={<SingleProduct />} />
           <Route path="/login" element={<Login />} />{" "}
           <Route path="/signup" element={<Signup />} />{" "}
           <Route path="*" element={<Navigate to='/404' />}/>
           <Route path="/404" element={<ErrorPage />}/>
-          
+            
         </Routes>{" "}
         <Footer footerData={footerAPI} /> <ToastContainer />
       </div>{" "}
