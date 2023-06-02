@@ -20,7 +20,7 @@ const List = ({ shoes, isMobile }) => {
 
   if (isLoading)
     return (
-      <div className="w-full flex items-center justify-center h-[100vh] p-10 m-auto">
+      <div className="w-full flex items-center justify-center h-[100vh] p-10 m-auto ">
         <Loader />
       </div>
     );

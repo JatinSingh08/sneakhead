@@ -2,7 +2,7 @@ import React from "react";
 import { Rings } from "react-loader-spinner";
 const Loader = () => {
   return (
-    <div className="ml-32 mb-20">
+    <div className="mb-20">
       <Rings
         height="80"
         width="80"
