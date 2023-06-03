@@ -4,6 +4,7 @@ import { deleteWishlistItem, postCartItem, postWishlistItem } from '../../servic
 import { useAuth, useData } from '../../context';
 import { ActionType } from '../../reducers/constants';
 import { useNavigate } from 'react-router-dom';
+import { toastNotification } from '../../utils/utlis';
 
 const Item = ({popular, shoe }) => {
   const [cartBtnDisabled, setCartBtnDisabled] = useState(false);
@@ -18,6 +19,12 @@ const Item = ({popular, shoe }) => {
 
   const cartHandler = async () => {
     setCartBtnDisabled(true);
+    if (token) {
+      toastNotification("success", "Successfully added to Cart");
+    } else {
+      navigate("/login");
+      toastNotification("warn", "Please login first");
+    }
     try {
         const { status, data: {cart} } = await postCartItem({
           product: { ...shoe, qty: 1 },
@@ -37,6 +44,12 @@ const Item = ({popular, shoe }) => {
 
   const wishlistHandler = async () => {
     setWishlistBtnDisabled(true);
+    if (token) {
+      toastNotification("success", "Successfully added to Cart");
+    } else {
+      navigate("/login");
+      toastNotification("warn", "Please login first");
+    }
     try {
       if(!isPresentInWishlist) {
         const { status, data: {wishlist} } = await postWishlistItem({

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context";
+import { toastNotification } from "../../../utils/utlis";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const Signup = () => {
       userDetails.password
     );
     navigate('/');
+    toastNotification('success', 'Successfully Signed In')
   };
 
   if (token) {
@@ -90,15 +92,6 @@ const Signup = () => {
             }
           />
         </div>
-        <label className="label">
-          <input
-            className="m-auto mt-3 mb-3"
-            type="checkbox"
-            name="label"
-            id=""
-          />{" "}
-          Accept all terms and conditions
-        </label>
         <button
           type="submit"
           className="button-theme bg-slate-900 shadow-md text-slate-200"

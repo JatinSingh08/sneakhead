@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
 
   const logoutUser = () => {
     localStorage.removeItem("login");
-    toastNotification("error", "Logged out !");
+    toastNotification("error", "Logged Out");
     setToken(null);
     setUser(null);
   };
