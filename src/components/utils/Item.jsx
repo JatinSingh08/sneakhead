@@ -45,7 +45,7 @@ const Item = ({popular, shoe }) => {
   const wishlistHandler = async () => {
     setWishlistBtnDisabled(true);
     if (token) {
-      toastNotification("success", "Successfully added to Cart");
+      toastNotification("success", "Successfully added to Wishlist");
     } else {
       navigate("/login");
       toastNotification("warn", "Please login first");
