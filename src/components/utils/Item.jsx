@@ -14,8 +14,8 @@ const Item = ({popular, shoe }) => {
   const { state ,dispatch } = useData();
   const navigate = useNavigate();
 
-  const isPresentInCart = state.cart.find(({_id: shoeId}) => shoeId.toString() === _id.toString());
-  const isPresentInWishlist = state.wishlist.find(({_id: shoeId}) => shoeId.toString() === _id.toString());
+  const isPresentInCart = state?.cart?.find(({_id: shoeId}) => shoeId.toString() === _id.toString());
+  const isPresentInWishlist = state?.wishlist?.find(({_id: shoeId}) => shoeId.toString() === _id.toString());
 
   const cartHandler = async () => {
     setCartBtnDisabled(true);

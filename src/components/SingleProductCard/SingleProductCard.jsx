@@ -17,10 +17,10 @@ const SingleProductCard = ({ shoe, isWishlist }) => {
   const { token } = useAuth();
   const navigate = useNavigate();
 
-  const isPresentInCart = state.cart.find(
+  const isPresentInCart = state?.cart?.find(
     ({ _id: shoeId }) => shoeId.toString() === _id.toString()
   );
-  const isPresentInWishlist = state.wishlist.find(
+  const isPresentInWishlist = state?.wishlist?.find(
     ({ _id: shoeId }) => shoeId.toString() === _id.toString()
   );
 

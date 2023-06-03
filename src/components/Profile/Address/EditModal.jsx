@@ -128,6 +128,7 @@ const EditModal = ({ isEdit, setIsEdit, addressId }) => {
                   required
                   className="border border-gray-300 rounded-lg p-2 w-full block mb-2 mt-6"
                   onChange={(e) => setAddress({...address, state: e.target.value})}
+                  defaultValue={address.state}
                 >
                   <option
                     disabled

@@ -37,12 +37,6 @@ const Signup = () => {
     toastNotification("success", "Successfully Signed In");
   };
 
-  if (token) {
-    console.log("user signed up");
-  } else {
-    console.log("user not signed up");
-  }
-
   useEffect(() => {
     navigate(location?.state?.from.pathName, { replace: true });
   }, [token]);

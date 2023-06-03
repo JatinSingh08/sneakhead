@@ -15,6 +15,7 @@ const DataContext = createContext();
 const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(DataReducer, initialState);
   const { token } = useAuth();
+  const localStorageUser = JSON.parse(localStorage.getItem("login"));
 
   const getAllProducts = async () => {
     try {
@@ -32,31 +33,21 @@ const DataProvider = ({ children }) => {
 
   const getCartItemsHandler = async (token) => {
     try {
-      if (token) {
-        const {
-          status,
-          data: { cart },
-        } = await getCartItems({ encodedToken: token });
-        if (status === 200 || status === 201) {
+        const cart = localStorageUser?.user.cart;
+        console.log({cart});
           dispatch({ type: ActionType.ADD_TO_CART, payload: cart });
-        }
-      }
     } catch (error) {
       console.log(error);
     }
   };
-
+console.log("wishlist", localStorageUser?.user.wishlist);
+console.log("cart", localStorageUser?.user.cart)
   const getWisthlistItemsHandler = async (token) => {
     try {
-      if (token) {
-        const {
-          status,
-          data: { wishlist },
-        } = await getWishlistItems({ encodedToken: token });
-        if (status === 200 || status === 201) {
-          dispatch({ type: ActionType.ADD_TO_WISHLIST, payload: wishlist });
-        }
-      }
+        const wishlist = localStorageUser?.user.wishlist;
+dispatch({ type: ActionType.ADD_TO_WISHLIST, payload: wishlist });
+
+
     } catch (error) {
       console.log(error);
     }
@@ -66,7 +57,7 @@ const DataProvider = ({ children }) => {
     getAllProducts();
     getCartItemsHandler();
     getWisthlistItemsHandler();
-  }, []);
+  }, [token]);
 
   const trendingShoesHome = [...state?.products?.slice(0, 12)];
   const popularShoesHome = [...state?.products?.slice(12, 15)];
@@ -77,9 +68,19 @@ const DataProvider = ({ children }) => {
       payload: { filterType, filterValue },
     });
   };
+const clearCartContext = () => {
+  dispatch({type: ActionType.ADD_TO_CART, payload: []})
+}
+const clearWishlistContext = () => {
+  dispatch({type: ActionType.ADD_TO_WISHLIST, payload: []})
+}
+
+
   let filteredProducts = filtersHandler(state);
   console.log("filters", state.filters);
 
+
+  console.log({state});
   return (
     <DataContext.Provider
       value={{
@@ -88,6 +89,8 @@ const DataProvider = ({ children }) => {
         trendingShoesHome,
         popularShoesHome,
         filteredProducts,
+        clearCartContext,
+        clearWishlistContext,
         applyFilters,
       }}
     >
