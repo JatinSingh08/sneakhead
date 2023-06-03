@@ -66,21 +66,19 @@ const DataProvider = ({ children }) => {
     getAllProducts();
     getCartItemsHandler();
     getWisthlistItemsHandler();
-  }, [token]);
+  }, []);
 
   const trendingShoesHome = [...state?.products?.slice(0, 12)];
   const popularShoesHome = [...state?.products?.slice(12, 15)];
 
-  // let filteredProducts = state.products;
   const applyFilters = (filterType, filterValue) => {
     dispatch({
       type: ActionType.CHANGE_FILTER,
-      payload: {filterType, filterValue}
-    })
-  }
+      payload: { filterType, filterValue },
+    });
+  };
   let filteredProducts = filtersHandler(state);
-  console.log('filters', state.filters);
-
+  console.log("filters", state.filters);
 
   return (
     <DataContext.Provider
@@ -90,7 +88,7 @@ const DataProvider = ({ children }) => {
         trendingShoesHome,
         popularShoesHome,
         filteredProducts,
-        applyFilters
+        applyFilters,
       }}
     >
       {children}

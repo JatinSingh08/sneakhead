@@ -38,7 +38,7 @@ export const getWishlistItems = async ({ encodedToken }) =>
 export const postCartItem = async ({product, encodedToken}) => 
   await axios.post("/api/user/cart",  
   {
-    product: product
+    product
   },
   {
     headers: {

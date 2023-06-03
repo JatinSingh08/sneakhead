@@ -55,9 +55,6 @@ const Login = () => {
             onChange={(e) => setUserDetails({...userDetails, password: e.target.value})}
           />
         </div>
-        <label className="label">
-          <input className='m-auto mt-3 mb-3' type="checkbox" name="label" id="" /> Remember me
-        </label>
         <button 
         className="button-theme bg-slate-900 shadow-md text-slate-200"
         
