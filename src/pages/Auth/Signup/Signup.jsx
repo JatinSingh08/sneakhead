@@ -42,7 +42,7 @@ const Signup = () => {
   }, [token]);
 
   return (
-    <form className="h-full mb-20 md:mx-2">
+    <form className="h-full mb-20 md:mx-2" onSubmit={submitHandler}>
       <div className="w-96  m-auto mt-24 h-auto p-4 border rounded-md drop-shadow-sm flex flex-col gap-3">
         <p className="font-semibold text-2xl mb-4">Signup</p>
         <div className="flex gap-0.5">
@@ -56,6 +56,8 @@ const Signup = () => {
               type="text"
               autoComplete="nope"
               placeholder="Enter FirstName"
+              required
+              value={userDetails.firstName}
             />
           </div>
 
@@ -69,6 +71,8 @@ const Signup = () => {
               type="text"
               autoComplete="nope"
               placeholder="Enter LastName"
+              required
+              value={userDetails.lastName}
             />
           </div>
         </div>
@@ -79,9 +83,11 @@ const Signup = () => {
             onChange={(e) =>
               setUserDetails({ ...userDetails, email: e.target.value })
             }
-            type="text"
+            type="email"
             autoComplete="nope"
             placeholder="Enter Email"
+            value={userDetails.email}
+            required
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -94,6 +100,8 @@ const Signup = () => {
             onChange={(e) =>
               setUserDetails({ ...userDetails, password: e.target.value })
             }
+            value={userDetails.password}
+            required
           />
         </div>
         <div className="relative flex flex-col gap-1">
@@ -104,6 +112,7 @@ const Signup = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Confirm Password"
             className="w-auto border rounded-md p-2 outline-none focus:border-blue-500 focus:ring-1"
+            required
           />
           <button
             className="absolute inset-y-0 right-0 top-6 flex items-center px-4 text-gray-600"
@@ -154,7 +163,6 @@ const Signup = () => {
         <button
           type="submit"
           className="button-theme bg-slate-900 shadow-md text-slate-200"
-          onClick={submitHandler}
         >
           Create new account
         </button>

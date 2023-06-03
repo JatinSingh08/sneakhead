@@ -20,12 +20,12 @@ const Login = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     loginUser(userDetails.email, userDetails.password);
-    toastNotification('success', 'Successfully Logged In');
   }
-
+  
   useEffect(() => {
     
     if(token) {
+      toastNotification('success', 'Successfully Logged In');
       navigate(location?.state?.from.pathname || '/')
     }
   } ,[token])
@@ -57,7 +57,7 @@ const Login = () => {
         </div>
         <button 
         className="button-theme bg-slate-900 shadow-md text-slate-200"
-        
+        type='submit'
         >Login</button>
         <button 
         className="button-theme bg-slate-200 shadow-md text-slate-900"
