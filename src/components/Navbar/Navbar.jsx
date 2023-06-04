@@ -3,6 +3,7 @@ import { HeartIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
 import sneaheadlogo from "../../assets/sneakheadlogo.svg";
 import { useAuth, useData } from "../../context";
+import { MdOutlineExplore } from 'react-icons/md';
 
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);
@@ -39,9 +40,9 @@ const Navbar = () => {
               className={`w-auto h-14 text-red-600`}
             />
           </Link>
-        <div className="block md:hidden ">
-          <form class="flex items-center">
-          <div className="relative">
+        <div className={`block md:hidden`} >
+          <form class={`flex items-center `}>
+          <div className={`relative`}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
@@ -74,12 +75,16 @@ const Navbar = () => {
         {/* Responsive Searchbar */}
         
 
-          <ul className="flex items-center justify-center gap-4">
+          <ul className="flex items-center justify-center gap-4 md:gap-2">
             <li className="grid items-center">
               <Link to="/productlist">
-                <button className="button-theme blur-effect bg-slate-800 text-slate-200 drop-shadow-lg">
+                {/* <button className="button-theme blur-effect bg-slate-800 text-slate-200 drop-shadow-lg">
                   Explore
-                </button>
+                </button> */}
+                <MdOutlineExplore  
+                className={`icon-style w-6 h-6 text-slate-900 ${
+                    scroll && "text-slate-900 transition-all duration-300"
+                  } `}/>
               </Link>
             </li>
             <li className="">
@@ -138,8 +143,8 @@ const Navbar = () => {
             </li>
           </ul>
       </nav>
-      <div className="hidden md:block">
-          <form class="flex items-center">
+      <div className={`hidden md:block `}>
+          <form class={`flex items-center justify-center ${!scroll ? 'md:mt-3' : 'md:mt-5'}`}>
           <div className="relative">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
