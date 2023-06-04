@@ -5,7 +5,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { sneakheadLogo } from "../../../assets";
-import useRazorpay from "react-razorpay";
 import confetti from "canvas-confetti";
 
 
