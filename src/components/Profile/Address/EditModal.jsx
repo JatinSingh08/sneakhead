@@ -41,8 +41,8 @@ const EditModal = ({ isEdit, setIsEdit, addressId }) => {
     <div className="fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full bg-gray-600 bg-opacity-75">
       {isEdit && (
         <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-50">
-          <div className="bg-white w-[40vw] p-6 rounded-lg shadow-lg md:w-[60vw] sm:w-[80vw] ">
-            <h2 className="text-xl font-semibold mb-4 md:mb-2">Enter Your Address</h2>
+          <div className="bg-white w-[40vw] p-6 rounded-lg shadow-lg md:w-[60vw] sm:w-[80vw] md:h-[80vh] md:overflow-y-scroll ">
+            <h2 className="text-xl font-semibold mb-4 md:mb-2 underline underline-offset-4">Enter Your Address</h2>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 md:grid-cols-1 sm:gap-1 gap-2 ">
                 <label htmlFor="address" className="block mb-2">
@@ -53,7 +53,7 @@ const EditModal = ({ isEdit, setIsEdit, addressId }) => {
                     value={address.name}
                     placeholder="Enter your Name"
                     onChange={(e) => setAddress({...address, name: e.target.value})}
-                    className="border border-gray-300 rounded-lg p-2 mb-4 w-full"
+                    className="border border-gray-300 rounded-lg p-2 mb-4 w-full mt-1"
                     required
                   />
                 </label>
@@ -66,7 +66,7 @@ const EditModal = ({ isEdit, setIsEdit, addressId }) => {
                     value={address.mobile}
                     placeholder="Mobile no."
                     onChange={(e) => setAddress({...address, mobile: e.target.value})}
-                    className="border border-gray-300 rounded-lg p-2 mb-4 w-full"
+                    className="border border-gray-300 rounded-lg p-2 mb-4 w-full mt-1"
                     required
                   />
                 </label>
@@ -79,7 +79,7 @@ const EditModal = ({ isEdit, setIsEdit, addressId }) => {
                     placeholder="Pincode"
                     value={address.pincode}
                     onChange={(e) => setAddress({...address, pincode: e.target.value})}
-                    className="border border-gray-300 rounded-lg p-2 mb-4 w-full"
+                    className="border border-gray-300 rounded-lg p-2 mb-4 w-full mt-1"
                     required
                   />
                 </label>
@@ -92,7 +92,7 @@ const EditModal = ({ isEdit, setIsEdit, addressId }) => {
                     placeholder="City"
                     value={address.city}
                     onChange={(e) => setAddress({...address, city: e.target.value})}
-                    className="border border-gray-300 rounded-lg p-2 mb-4 w-full"
+                    className="border border-gray-300 rounded-lg p-2 mb-4 w-full mt-1"
                     required
                   />
                 </label>
@@ -105,7 +105,7 @@ const EditModal = ({ isEdit, setIsEdit, addressId }) => {
                   placeholder="Address"
                   value={address.residence}
                   onChange={(e) => setAddress({...address, residence: e.target.value})}
-                  className="border border-gray-300 rounded-lg p-5 w-full"
+                  className="border border-gray-300 rounded-lg p-5 w-full mt-1"
                   required
                 />
               </label>
@@ -118,30 +118,34 @@ const EditModal = ({ isEdit, setIsEdit, addressId }) => {
                     placeholder="Alternate Ph."
                     value={address.alternatemobile}
                     onChange={(e) => setAddress({...address, alternatemobile: e.target.value})}
-                    className="border border-gray-300 rounded-lg p-2 w-full"
+                    className="border border-gray-300 rounded-lg p-2 w-full mt-1"
                   />
                 </label>
 
-                <select
-                  name=""
-                  id=""
-                  required
-                  className="border border-gray-300 rounded-lg p-2 w-full block mb-2 mt-6"
-                  onChange={(e) => setAddress({...address, state: e.target.value})}
-                  defaultValue={address.state}
-                >
-                  <option
-                    disabled
-                    selected
+                <label htmlFor="state">
+                  State
+                  <select
+                    name=""
+                    id="state"
                     required
-                    // className="border border-gray-300 rounded-lg p-2 w-full"
+                    className="border border-gray-300 rounded-lg p-2 w-full block mb-2 mt-1"
+                    onChange={(e) => setAddress({...address, state: e.target.value})}
+                    defaultValue={address.state}
                   >
-                    Choose State
-                  </option>
-                  {states.map((state, index) => (
-                    <option value={state}>{state}</option>
-                  ))}
-                </select>
+                    <option
+                      disabled
+                      selected
+                      required
+                      // className="border border-gray-300 rounded-lg p-2 w-full"
+                    >
+                      Choose State
+                    </option>
+                    {states.map((state, index) => (
+                      <option value={state}>{state}</option>
+                    ))}
+                  </select>
+
+                </label>
               </div>
 
               <div className="flex justify-end">
