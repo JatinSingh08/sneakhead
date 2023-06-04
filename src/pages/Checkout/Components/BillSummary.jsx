@@ -2,13 +2,8 @@ import React from "react";
 import { useData } from "../../../context";
 import { billAmountHandler, toastNotification } from "../../../utils/utlis";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
 import { sneakheadLogo } from "../../../assets";
 import confetti from "canvas-confetti";
-
-
-
 
 const BillSummary = ({addressSelected}) => {
   const {

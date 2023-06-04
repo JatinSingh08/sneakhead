@@ -39,7 +39,7 @@ const Navbar = () => {
               className={`w-auto h-14 text-red-600`}
             />
           </Link>
-        <div className="block md:hidden">
+        <div className="block md:hidden ">
           <form class="flex items-center">
           <div className="relative">
                 <svg

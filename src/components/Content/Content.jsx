@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Content = ({isHighlight, contentData: {heading, title, text, btn, url, img}}) => {
 
@@ -8,9 +9,9 @@ const Content = ({isHighlight, contentData: {heading, title, text, btn, url, img
         <h1 className=' text-4xl lg:text-3xl font-bold text-gradient'>{heading}</h1>
         <h1 className='text-slate-900 text-5xl lg:text-4xl md:text-3xl sm:text-2xl font-bold filter drop-shadow-lg'>{title}</h1>
         <p className='xl:text-sm my-4 text-slate-900'>{text}</p>
-        <a href={url} role='button' className='flex items-center '>
-          <button className='button-theme bg-slate-900 text-slate-100 py-1.5 shadow-slate-900'>{btn}</button>
-        </a>
+        <Link role='button' to='productlist' className='flex items-center '>
+          <button className='button-theme bg-slate-900 text-slate-100 py-1.5 shadow-slate-900 md:mb-4'>{btn}</button>
+        </Link>
       </div>
 
       <div className='flex items-center justify-center max-w-xl lg:max-w-none w-full relative'>
