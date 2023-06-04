@@ -29,10 +29,10 @@ const Filters = ({showFilters}) => {
   };
   return (
     <div 
-    className={`transition-all duration-300 ease-in-out  bottom-0 sticky md:fixed  p-10 h-[100vh] w-[380px] left-0 top-0 gap-6 flex flex-col border-r-2 overflow-y-scroll scrollbar-theme z-20
+    className={`transition-all duration-300 ease-in-out  bottom-0 sticky md:fixed  p-10 h-[100vh] w-[380px] left-0 top-0 gap-6 md:gap-3 flex flex-col border-r-2 overflow-y-scroll scrollbar-theme z-20
   
 
-    ${showFilters ? 'fixed top-0 bottom-0 blur-effect-theme opacity-100 z-20 left-0 w-[260px] mt-[9vh] ' : 'md:-left-[400px]' }
+    ${showFilters ? 'fixed top-0 bottom-0 blur-effect-theme opacity-100 z-20 left-0 w-[250px] md:h-[100vh] md:mt-[27%] ' : 'md:-left-[400px]' }
     `}
     
     >
@@ -241,7 +241,7 @@ const Filters = ({showFilters}) => {
         <h1 className="underline underline-offset-4 text-2xl text-slate-900 font-bold filter drop-shadow-lg">
           Sort By
         </h1>
-        <div className="grid gap-1 justify-items-start mt-3">
+        <div className="grid gap-1 justify-items-start mt-3 md:mt-0">
           <label className="flex gap-2">
             <input
               type="radio"
