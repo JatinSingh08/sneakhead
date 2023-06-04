@@ -1,5 +1,3 @@
-
-# Sneakhead
 <div align="center">
 
   
