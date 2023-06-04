@@ -32,12 +32,12 @@ const Filters = ({showFilters}) => {
     className={`transition-all duration-300 ease-in-out  bottom-0 sticky md:fixed  p-10 h-[100vh] w-[380px] left-0 top-0 gap-6 flex flex-col border-r-2 overflow-y-scroll scrollbar-theme z-20
   
 
-    ${showFilters ? 'fixed top-0 bottom-0 blur-effect-theme opacity-100 z-20 left-0 w-[250px] h-[780px] mt-[12vh] ' : 'md:-left-[400px]' }
+    ${showFilters ? 'fixed top-0 bottom-0 blur-effect-theme opacity-100 z-20 left-0 w-[260px] mt-[9vh] ' : 'md:-left-[400px]' }
     `}
     
     >
       <div>
-        <button className="button-theme bg-slate-200 text-slate-900"
+        <button className="button-theme bg-slate-200 text-slate-900 "
         onClick={() => dispatch({ type: ActionType.CLEAR_FILTER, payload: initialState.filters })}
         >Clear Filters</button>
       </div>
