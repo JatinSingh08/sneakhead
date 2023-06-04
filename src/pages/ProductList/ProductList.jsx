@@ -27,7 +27,7 @@ const ProductList = () => {
   };
 
   return (
-    <div className="flex mt-[9vh] relative">
+    <div className="flex mt-[9vh] relative md:mt-[15vh]">
 
         <Filters 
         showFilters={showFilters}
