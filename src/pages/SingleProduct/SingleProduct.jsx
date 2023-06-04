@@ -124,7 +124,7 @@ const SingleProduct = () => {
     );
 
   return (
-    <div className="min-h-screen flex items-center justify-center md:mt-[9vh] p-4">
+    <div className="min-h-screen flex items-center justify-center md:mt-[40%] p-4">
       <div className="flex items-center justify-center gap-10 md:flex-col">
         <div className=" hover:scale-100">
           <img
