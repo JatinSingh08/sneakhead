@@ -1,9 +1,7 @@
-
-# Sneakhead
 <div align="center">
 
   
-# FashiFy
+# Sneakhead
 ## Shop with Fashion  
   An Ecommerce Website for Sneakers
 </div>
