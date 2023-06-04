@@ -24,10 +24,10 @@ const SingleProduct = () => {
   const shoe = products.find(({ _id }) => _id.toString() === id.toString());
 
   // const { _id, title, text, brand, category, rating,  img, price } = shoe;
-  const isPresentInCart = cart.find(
+  const isPresentInCart = cart?.find(
     ({ _id: shoeId }) => shoeId.toString() === id.toString()
   );
-  const isPresentInWishlist = wishlist.find(
+  const isPresentInWishlist = wishlist?.find(
     ({ _id: shoeId }) => shoeId.toString() === id.toString()
   );
 
