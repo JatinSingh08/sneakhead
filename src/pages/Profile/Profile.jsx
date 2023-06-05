@@ -65,7 +65,6 @@ const items = [
             )
             : (
               <>
-                <b>{items[activeTab].title}: </b>
                 {
                   isLoading === false && items[activeTab].content
                 }

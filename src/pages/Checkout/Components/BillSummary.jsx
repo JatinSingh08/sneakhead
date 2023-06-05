@@ -1,8 +1,8 @@
 import React from "react";
 import { useAuth, useData } from "../../../context";
 import { billAmountHandler, toastNotification } from "../../../utils/utlis";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { sneakheadLogo } from "../../../assets";
+import { Link, useNavigate } from "react-router-dom";
+import { Logo2 } from "../../../assets";
 import confetti from "canvas-confetti";
 import { clerCart } from "../../../services/services";
 import { ActionType } from "../../../reducers/constants";
@@ -89,7 +89,7 @@ const BillSummary = ({addressSelected}) => {
         currency: 'INR',
         name: 'Sneakhead',
         description: 'Thank you for shopping with us',
-        image: {sneakheadLogo},
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9mB3r3RVHnVRfRJRnqBNLQzleqrsruZ36g&usqp=CAU',
         handler: function (response) {
           // const tempObj = {
           //   products: [...cart],

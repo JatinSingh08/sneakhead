@@ -79,3 +79,4 @@ export { default as converseLogo } from './converseLogo.png';
 export { default as vansLogo } from './vansLogo.png';
 export { default as orderSuccessGif }  from './orderSuccessGif.gif';
 export { default as sneakheadLogo} from './sneakheadlogo.svg';
+export { default as Logo2} from './logo2.png';
