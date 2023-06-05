@@ -144,7 +144,7 @@ const Navbar = () => {
           </ul>
       </nav>
       <div className={`hidden md:block `}>
-          <form class={`flex items-center justify-center ${!scroll ? 'md:mt-3' : 'md:mb-0'}`}>
+          <form class={`flex items-center justify-center m-auto w-[280px] ${!scroll ? 'md:mt-3' : 'md:mb-0'}`}>
           <div className="relative">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
