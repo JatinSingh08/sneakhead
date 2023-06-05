@@ -1,15 +1,19 @@
 import React from "react";
-import { useData } from "../../../context";
+import { useAuth, useData } from "../../../context";
 import { billAmountHandler, toastNotification } from "../../../utils/utlis";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { sneakheadLogo } from "../../../assets";
 import confetti from "canvas-confetti";
+import { clerCart } from "../../../services/services";
+import { ActionType } from "../../../reducers/constants";
 
 const BillSummary = ({addressSelected}) => {
   const {
     state: { cart, addressList },
+    dispatch
   } = useData();
   const navigate = useNavigate();
+  const { token } = useAuth();
   const billAmount = billAmountHandler(cart);
   const grandTotal = billAmount + 50 - 499;
   const amountSaved = billAmount - grandTotal;
@@ -87,20 +91,20 @@ const BillSummary = ({addressSelected}) => {
         description: 'Thank you for shopping with us',
         image: {sneakheadLogo},
         handler: function (response) {
-          // const tempObj = {
-          //   products: [...cartData],
-          //   amount: totalPrice,
-          //   paymentId: response.razorpay_payment_id,
-          // };
+          const tempObj = {
+            products: [...cart],
+            amount: grandTotal,
+            paymentId: response.razorpay_payment_id,
+          };
           // orderDispatch({ type: 'ADD_ORDERS', payload: tempObj });
           toastNotification('success', 'Payment succesfull');
           navigate('/order');
           Popper();
-          // clearCart(dispatch, cartData, token);
-          // dispatch({
-          //   type: ACTION_TYPE.SETCART_LIST,
-          //   payload: { cartlist: [] },
-          // });
+          clerCart(cart, token);
+          dispatch({
+            type: ActionType.ADD_TO_CART,
+            payload: [],
+          });
         },
         prefill: {
           name: 'Jatin',
