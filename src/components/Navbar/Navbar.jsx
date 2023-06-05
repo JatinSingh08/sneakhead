@@ -32,12 +32,12 @@ const Navbar = () => {
           : `fixed top-0 left-0 right-0 blur-effect-theme h-[10vh] md:py-5 flex flex-col items-center justify-center opacity-100 z-50 `
       }
     >
-      <nav className={`flex items-center justify-between nike-container ${scroll && 'mt-6 mb-2'}`}>
+      <nav className={`flex items-center justify-between nike-container ${scroll && 'mt-8 mb-2'}`}>
           <Link to="/">
             <img
               src={sneaheadlogo}
               alt=""
-              className={`w-auto h-14 text-red-600`}
+              className={`w-auto h-14 md:h-11 text-red-600`}
             />
           </Link>
         <div className={`block md:hidden`} >
