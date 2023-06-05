@@ -91,11 +91,11 @@ const BillSummary = ({addressSelected}) => {
         description: 'Thank you for shopping with us',
         image: {sneakheadLogo},
         handler: function (response) {
-          const tempObj = {
-            products: [...cart],
-            amount: grandTotal,
-            paymentId: response.razorpay_payment_id,
-          };
+          // const tempObj = {
+          //   products: [...cart],
+          //   amount: grandTotal,
+          //   paymentId: response.razorpay_payment_id,
+          // };
           // orderDispatch({ type: 'ADD_ORDERS', payload: tempObj });
           toastNotification('success', 'Payment succesfull');
           navigate('/order');
@@ -127,7 +127,7 @@ const BillSummary = ({addressSelected}) => {
   return (
     <div className="border rounded-md w-96 p-3 mt-10 md:w-[90vw]">
       <div className="my-1 border-b-2 text-2xl font-semibold text-start border-gray-200 pb-1">
-        <h1>Your Order</h1>
+        <h1>Order Summary</h1>
       </div>
 
       <div className="text-gray-700 flex justify-between">

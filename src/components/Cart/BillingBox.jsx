@@ -14,7 +14,7 @@ const BillingBox = () => {
   return (
     <div className="border rounded-md w-96 p-3 md:w-[60vw] sm:w-[80vw] xsm:w-full md:mt-10">
       <div className="my-1 border-b-2 text-2xl font-semibold text-start border-gray-200 pb-1">
-        <h1>Order Summary</h1>
+        <h1>Your Order</h1>
       </div>
 
       <div className="text-gray-700 flex justify-between">
