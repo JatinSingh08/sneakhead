@@ -32,7 +32,7 @@ const Filters = ({showFilters}) => {
     className={`transition-all duration-300 ease-in-out  bottom-0 sticky md:fixed  p-10 h-[100vh] w-[380px] left-0 top-0 gap-6 md:gap-3 flex flex-col border-r-2 overflow-y-scroll scrollbar-theme z-20
   
 
-    ${showFilters ? 'fixed top-0 bottom-0 blur-effect-theme opacity-100 z-20 left-0 w-[240px] md:h-[100vh] md:mt-[27%] ' : 'md:-left-[400px]' }
+    ${showFilters ? 'fixed top-0 bottom-0 blur-effect-theme opacity-100 z-20 left-0 w-[70vw] md:mt-[25%] h-[780px]' : 'md:-left-[400px]' }
     `}
     
     >

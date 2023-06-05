@@ -50,8 +50,8 @@ const Wishlist = () => {
           <>
             <img src={emptyWishlistGif} alt="" />
             <div className='flex flex-col items-center justify-center mt-2'>
-              <h1 className='font-medium text-2xl text-[#7F7F7F]'>There is Nothing to show in your Wishlist.</h1>
-              <h1 className='font-medium text-lg text-[#7F7F7F]'>Add some cool Sneakers to Your Wishlist.</h1>
+              <h1 className='font-medium text-2xl text-[#7F7F7F] md:text-lg'>There is Nothing to show in your Wishlist.</h1>
+              <h1 className='font-medium text-lg text-[#7F7F7F] md:text-base'>Add some cool Sneakers to Your Wishlist.</h1>
             </div>
           </>
         )
