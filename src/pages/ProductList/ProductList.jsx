@@ -49,7 +49,6 @@ const ProductList = () => {
               />
             </svg>
           </div>
-
       <List shoes={filteredProducts} 
       />
    
