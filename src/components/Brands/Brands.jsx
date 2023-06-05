@@ -8,12 +8,14 @@ import {
 } from "../../assets";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../context";
+import { ActionType } from "../../reducers/constants";
 
 const Brands = () => {
-  const { state, applyFilters } = useData();
+  const { state, applyFilters, dispatch } = useData();
   const navigate = useNavigate();
   const brandsCheckBoxHandler = (e) => {
-    let brandsArr = state.filters.brands;
+    dispatch({ type: ActionType.CLEAR_FILTER })
+    let brandsArr = [];
     console.log(e.target.dataset.value);
     brandsArr.push(e.target.dataset.value);
     applyFilters(e.target.name, brandsArr);
