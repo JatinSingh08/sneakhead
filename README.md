@@ -1,7 +1,7 @@
 <div align="center"> 
  
 # Sneakhead
-## An Ecommerce website for Trending Sneakers
+## An Ecommerce website for Trending Sneakers 👟
 </div>
 
 ## **How to install and run locally ?**
