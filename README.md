@@ -7,8 +7,12 @@
 ## **How to install and run locally ?**
 
 ```
-
+$ git clone https://github.com/JatinSingh08/sneakhead.git
+$ cd sneakhead
+$ npm install
+$ npm start
 ```
+
 ## **Features -**
 
 - Home page
