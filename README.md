@@ -22,6 +22,7 @@
 - Tailwind css
 
 ## **Demo -**
+https://github.com/JatinSingh08/sneakhead/assets/97881261/867811c3-5000-4bd5-819c-fc03078c6dcd
 
 
 
